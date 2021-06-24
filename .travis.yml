@@ -36,7 +36,7 @@ jobs:
   #    failOnStderr: true
   - task: Xcode@5
     inputs:
-      actions: 'build,clean,test'
+      actions: 'clean build test'
       configuration: 'Debug'
       sdk: 'iphonesimulator'
       xcWorkspacePath: 'MSAL.xcworkspace'
