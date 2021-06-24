@@ -15,7 +15,10 @@ jobs:
   steps:
   - task: CmdLine@2
     inputs:
-      script: 'gem install xcpretty slather -N'
+      script: |
+        gem install xcpretty slather -N
+        sudo gem pristine ffi --version 1.13.1
+      failOnStderr: true
   - checkout: self
     clean: true
     submodules: true
