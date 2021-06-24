@@ -28,12 +28,25 @@ jobs:
       targetType: 'inline'
       script: |
         find . -name "*.gcda" -print0 | xargs -0 rm
-        set -o pipefail
+  
   #- task: PythonScript@0
   #  inputs:
   #    scriptSource: 'filePath'
   #    scriptPath: 'build.py'
   #    failOnStderr: true
+  - task: Xcode@5
+    inputs:
+      actions: 'build,clean,test'
+      configuration: 'Debug'
+      sdk: 'iphonesimulator'
+      xcWorkspacePath: 'MSAL.xcworkspace'
+      scheme: 'MSAL (iOS Framework)'
+      xcodeVersion: '12'
+      packageApp: false
+      destinationPlatformOption: 'iOS'
+      destinationSimulators: 'iPhone 8,OS=latest'
+      publishJUnitResults: true
+      testRunTitle: 'test results'
   - task: Bash@3
     inputs:
       targetType: 'inline'
