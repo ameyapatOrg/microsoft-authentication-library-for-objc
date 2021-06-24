@@ -60,12 +60,15 @@ target_specifiers = [
 		"operations" : [ "build", "test", "codecov" ],
 		"min_warn_codecov" : 70.0,
 		"platform" : "iOS",
+        "target" : "iosFramework"
 	},
 	{
 		"name" : "iOS Test App",
 		"scheme" : "MSAL Test App (iOS)",
 		"operations" : [ "build" ],
 		"platform" : "iOS",
+        "target" : "iosTestApp"
+        
 	},
 	{
 		"name" : "Sample iOS App",
@@ -73,6 +76,7 @@ target_specifiers = [
 		"workspace" : "Samples/ios/SampleApp.xcworkspace",
 		"operations" : [ "build" ],
 		"platform" : "iOS",
+        "target" : "sampleIosApp"
 	},
     {
         "name" : "Sample iOS App-iOS",
@@ -80,13 +84,15 @@ target_specifiers = [
         "workspace" : "Samples/ios/SampleApp.xcworkspace",
         "operations" : [ "build" ],
         "platform" : "iOS",
+        "target" : "sampleIosAppSwift"
     },
 	{
 		"name" : "Mac Framework",
 		"scheme" : "MSAL (Mac Framework)",
 		"operations" : [ "build", "test", "codecov" ],
 		"min_warn_codecov" : 70.0,
-		"platform" : "Mac"
+		"platform" : "Mac",
+        "target" : "macFramework"
 	},
 ]
 

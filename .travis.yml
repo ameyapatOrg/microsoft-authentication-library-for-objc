@@ -29,22 +29,17 @@ jobs:
       script: |
         find . -name "*.gcda" -print0 | xargs -0 rm
         set -o pipefail
-  - task: PythonScript@0
-    inputs:
-      scriptSource: 'filePath'
-      scriptPath: 'build.py'
-      failOnStderr: true
-  #- task: Bash@3
+  #- task: PythonScript@0
   #  inputs:
-  #    targetType: 'inline'
-  #    script: |
-  #      { output=$(./build.py 2>&1 1>&3-) ;} 3>&1
-  #      echo "STDERR = ${output}"
+  #    scriptSource: 'filePath'
+  #    scriptPath: 'build.py'
   #    failOnStderr: true
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: '2> >(while read line; do (>&2 echo "STDERROR: $line"); done)'
+      script: |
+        ./build.py --target iosFramework
+      failOnStderr: true
   
   
   
