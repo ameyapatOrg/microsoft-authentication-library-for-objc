@@ -98,10 +98,10 @@ target_specifiers = [
 
 def print_operation_start(name, operation) :
 	print ColorValues.HDR + "Beginning " + name + " [" + operation + "]" + ColorValues.END
-	print "travis_fold:start:" + (name + "_" + operation).replace(" ", "_")
+	print "##[group]" + (name + "_" + operation).replace(" ", "_")
 
 def print_operation_end(name, operation, exit_code, start_time) :
-	print "travis_fold:end:" + (name + "_" + operation).replace(" ", "_")
+	print "##[endgroup]" + (name + "_" + operation).replace(" ", "_")
 	
 	end_time = timer()
 
@@ -180,7 +180,7 @@ class BuildTarget:
 		
 		print "Retrieving Build Settings for " + self.name
 		if (show_build_settings) :
-			print "travis_fold:start:" + (self.name + "_settings").replace(" ", "_")
+			print "##[group]" + (self.name + "_settings").replace(" ", "_")
 				
 		command = self.xcodebuild_command(None, False)
 		command += " -showBuildSettings"
@@ -191,7 +191,7 @@ class BuildTarget:
 		settings_blob = subprocess.check_output(command, shell=True)
 		if (show_build_settings) :
 			print settings_blob
-			print "travis_fold:end:" + (self.name + "_settings").replace(" ", "_")
+			print "##[endgroup]" + (self.name + "_settings").replace(" ", "_")
 		
 		settings_blob = settings_blob.decode("utf-8")
 		settings_blob = settings_blob.split("\n")

@@ -6,14 +6,14 @@ pr:
     - '*'
   drafts: true
 
-# Pipeline will not be triggered for CI
+# Not triggering for CI since it is triggered for PRs
 trigger: none
 
 # Define 5 parallel jobs that run build script for specified targets
 jobs:
 - job: 'Validate_Pull_Request'
   strategy:
-    maxParallel: 5
+    maxParallel: 2
     matrix:
       IOS_FRAMEWORK: 
         target: "iosFramework iosTestApp sampleIosApp sampleIosAppSwift"
