@@ -188,7 +188,6 @@
     XCTAssertNil(removalError);
     XCTAssertEqual(mockExternalAccountHandler.removeAccountCount, 1);
     XCTAssertFalse(mockExternalAccountHandler.wipeAccountValue);
-    XCTAssertTrue(NO);
 }
 
 #pragma mark - Helpers
