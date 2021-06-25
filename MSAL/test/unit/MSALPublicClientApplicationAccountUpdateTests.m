@@ -181,7 +181,7 @@
     
     XCTAssertNotNil(application);
     XCTAssertNil(error);
-    
+    XCTAssert(NO);
     NSError *removalError = nil;
     BOOL result = [application removeAccount:[self testMSALAccount] error:&removalError];
     XCTAssertTrue(result);
