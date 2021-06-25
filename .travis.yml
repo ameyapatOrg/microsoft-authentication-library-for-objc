@@ -37,6 +37,10 @@ jobs:
         echo "FINAL STATUS  = ${final_status}"
         echo "POSSIBLE ERRORS: ${output}"
         rm -rf status.txt
+
+        if [ $final_status != "0" ]; then
+          echo "Build & Testing Failed! \n ${output}" >&2
+        fi
       failOnStderr: true
   
   
