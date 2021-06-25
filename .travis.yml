@@ -1,3 +1,4 @@
+# Pipeline will be triggered for PR & any updates on the PR on all branches
 pr:
   autoCancel: true
   branches:
@@ -5,15 +6,33 @@ pr:
     - '*'
   drafts: true
 
+# Pipeline will not be triggered for CI
+trigger: none
+
+# Define 5 parallel jobs that run build script for specified targets
 jobs:
 - job: 'Validate_Pull_Request'
+  strategy:
+    maxParallel: 5
+    matrix:
+      IOS_FRAMEWORK: 
+        target: "iosFramework"
+      IOS_TEST_APP: 
+        target: "iosTestApp"
+      SAMPLE_IOS_APP: 
+        target: "sampleIosApp"
+      SAMPLE_IOS_APP_SWIFT: 
+        target: "sampleIosAppSwift"
+      MAC_FRAMEWORK: 
+        target: "macFramework"
   displayName: Validate Pull Request
   pool:
     vmImage: 'macOS-latest'
-    timeOutInMinutes: 20
+    timeOutInMinutes: 30
 
   steps:
   - task: CmdLine@2
+    displayName: Installing dependencies
     inputs:
       script: |
         gem install xcpretty slather -N
@@ -24,11 +43,13 @@ jobs:
     fetchDepth: 1
     persistCredentials: false
   - task: Bash@3
+    displayName: Removing any lingering codecov files. These can cause issues when the xcode version changes
     inputs:
       targetType: 'inline'
       script: |
         find . -name "*.gcda" -print0 | xargs -0 rm
   - task: Bash@3
+    displayName: Run Build script & check for Errors
     inputs:
       targetType: 'inline'
       script: |
@@ -42,6 +63,11 @@ jobs:
           echo "Build & Testing Failed! \n ${output}" >&2
         fi
       failOnStderr: true
-  
+  - task: Bash@3
+    condition: always()
+    displayName: Display Build & Test Errors
+    inputs:
+      targetType: 'inline'
+      script: 'echo ${final_status}'
   
   
