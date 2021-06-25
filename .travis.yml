@@ -62,8 +62,7 @@ jobs:
         echo "POSSIBLE ERRORS: ${output}"
 
         if [ $final_status != "0" ]; then
-          echo "Build & Testing Failed! \n ${output}" >&2
-          echo "##vso[task.setvariable variable=errors]${output}"
+          echo "##vso[task.setvariable variable=errors]${output}" >&2
         fi
       failOnStderr: true
   - task: Bash@3
