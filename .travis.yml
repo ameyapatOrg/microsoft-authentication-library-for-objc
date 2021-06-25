@@ -33,7 +33,8 @@ jobs:
       targetType: 'inline'
       script: |
         ./build.py --target iosFramework
-        echo "FINAL STATUS = ${FINAL_STATUS}"
+        final_status=$(<status.txt)
+        echo "FINAL STATUS  = ${final_status}"
       failOnStderr: true
   
   

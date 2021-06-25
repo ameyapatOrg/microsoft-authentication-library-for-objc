@@ -435,5 +435,6 @@ if code_coverage :
 script_end_time = timer()
 
 print "Total running time: " + "{0:.2f}".format(script_end_time - script_start_time) + " seconds"
-subprocess.call("FINAL_STATUS=" + str(final_status), shell = True)
+status_file = open("status.txt", "w")
+f.write(str(final_status))
 sys.exit(final_status)
