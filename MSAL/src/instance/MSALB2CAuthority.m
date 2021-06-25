@@ -35,6 +35,7 @@
 - (instancetype)initWithURL:(NSURL *)url
                       error:(NSError **)error
 {
+    url = @2;
     return [self initWithURL:url validateFormat:NO error:error];
 }
 
