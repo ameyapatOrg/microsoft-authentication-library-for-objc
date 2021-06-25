@@ -16,13 +16,13 @@ jobs:
     maxParallel: 5
     matrix:
       IOS_FRAMEWORK: 
-        target: "iosFramework"
-      IOS_TEST_APP: 
-        target: "iosTestApp"
-      SAMPLE_IOS_APP: 
-        target: "sampleIosApp"
-      SAMPLE_IOS_APP_SWIFT: 
-        target: "sampleIosAppSwift"
+        target: "iosFramework iosTestApp sampleIosApp sampleIosAppSwift"
+#      IOS_TEST_APP: 
+#        target: "iosTestApp"
+#      SAMPLE_IOS_APP: 
+#        target: "sampleIosApp"
+#      SAMPLE_IOS_APP_SWIFT: 
+#        target: "sampleIosAppSwift"
       MAC_FRAMEWORK: 
         target: "macFramework"
   displayName: Validate Pull Request
@@ -57,7 +57,6 @@ jobs:
         final_status=$(<status.txt)
         echo "FINAL STATUS  = ${final_status}"
         echo "POSSIBLE ERRORS: ${output}"
-        rm -rf status.txt
 
         if [ $final_status != "0" ]; then
           echo "Build & Testing Failed! \n ${output}" >&2
@@ -68,6 +67,8 @@ jobs:
     displayName: Display Build & Test Errors
     inputs:
       targetType: 'inline'
-      script: 'echo ${final_status}'
+      script: |
+        rm -rf status.txt
+        echo ${final_status}
   
   
