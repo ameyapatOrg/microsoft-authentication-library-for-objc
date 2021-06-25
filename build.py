@@ -436,5 +436,5 @@ script_end_time = timer()
 
 print "Total running time: " + "{0:.2f}".format(script_end_time - script_start_time) + " seconds"
 status_file = open("status.txt", "w")
-f.write(str(final_status))
+status_file.write(str(final_status))
 sys.exit(final_status)

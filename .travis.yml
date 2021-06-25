@@ -35,6 +35,7 @@ jobs:
         ./build.py --target iosFramework
         final_status=$(<status.txt)
         echo "FINAL STATUS  = ${final_status}"
+        rm -rm status.txt
       failOnStderr: true
   
   
