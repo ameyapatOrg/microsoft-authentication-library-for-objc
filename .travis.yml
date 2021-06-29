@@ -70,7 +70,9 @@ jobs:
       script: |
         rm -rf status.txt
   - task: PublishPipelineArtifact@1
+    condition: succeededOrFailed()
     inputs:
-      targetPath: '$(Pipeline.Workspace)'
+      targetPath: '$(Agent.BuildDirectory)/s/build/reports/'
+      artifact: 'TestOutputs'
       publishLocation: 'pipeline'
   
