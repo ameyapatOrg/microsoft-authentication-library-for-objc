@@ -166,8 +166,9 @@ class BuildTarget:
 			command += " " + ios_sim_flags + " " + ios_sim_dest
 		
 		if (xcpretty) :
-			command += " | xcpretty --report junit"
-		
+			command += " | xcpretty"
+		if (xcpretty and xcb_operation == "test") :
+			command += " --report junit --output /build/reports/" + self.name + "/"
 		return command
 	
 	def get_build_settings(self) :
