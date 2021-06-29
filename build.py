@@ -166,7 +166,7 @@ class BuildTarget:
 			command += " " + ios_sim_flags + " " + ios_sim_dest
 		
 		if (xcpretty) :
-			command += " | xcpretty --report html"
+			command += " | xcpretty --report junit"
 		
 		return command
 	

@@ -69,10 +69,10 @@ jobs:
       targetType: 'inline'
       script: |
         rm -rf status.txt
-  - task: PublishPipelineArtifact@1
-    condition: succeededOrFailed()
+    - task: PublishTestResults@2
     inputs:
-      targetPath: '$(Agent.BuildDirectory)/s/build/reports/'
-      artifact: 'TestOutputs'
-      publishLocation: 'pipeline'
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '$(Agent.BuildDirectory)/s/build/reports/*'
+      failTaskOnFailedTests: true
+      testRunTitle: 'Test Run - $(target)'
   
