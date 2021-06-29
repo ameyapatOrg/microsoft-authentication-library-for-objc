@@ -167,7 +167,7 @@ class BuildTarget:
 		
 		if (xcpretty) :
 			command += " | xcpretty"
-		if (xcpretty and xcb_operation == "test") :
+		if (xcpretty and operation == "test") :
 			command += " --report junit --output /build/reports/" + self.name + "/"
 		return command
 	
