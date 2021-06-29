@@ -169,6 +169,8 @@ class BuildTarget:
 			command += " | xcpretty"
 		if (xcpretty and operation == "test") :
 			command += " --report junit --output /build/reports/" + self.name + "/"
+			if not os.path.exists("/build/reports/"):
+    			os.makedirs("/build/reports/")	
 		return command
 	
 	def get_build_settings(self) :
