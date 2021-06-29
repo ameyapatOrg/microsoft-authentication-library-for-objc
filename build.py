@@ -168,8 +168,7 @@ class BuildTarget:
 		if (xcpretty) :
 			command += " | xcpretty"
 		if (xcpretty and operation == "test") :
-			command += " --report junit --output /build/reports/" + self.name + "/"
-    		os.makedirs("/build/reports/")	
+			command += " --report junit --output ./build/reports/'" + target.name + ".xml'"
 		return command
 	
 	def get_build_settings(self) :
@@ -439,6 +438,9 @@ script_end_time = timer()
 print "Total running time: " + "{0:.2f}".format(script_end_time - script_start_time) + " seconds"
 # xcodebuild seems to log in stderr instead of stdout. Catching final_status in text file to capture exit code and determine if build failed
 # Similar issue : (see https://developer.apple.com/forums/thread/663959)
+if (not os.path.exists("./build")) :
+    os.makedirs("./build")
+os.chdir(r'./build')
 status_file = open("status.txt", "w")
 status_file.write(str(final_status))
 sys.exit(final_status)
