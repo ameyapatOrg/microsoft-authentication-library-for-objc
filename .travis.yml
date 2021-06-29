@@ -69,6 +69,10 @@ jobs:
       targetType: 'inline'
       script: |
         rm -rf ./build/status.txt
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Pipeline.Workspace)/s/build/reports'
+      publishLocation: 'pipeline'
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
