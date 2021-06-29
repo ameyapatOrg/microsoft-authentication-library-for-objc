@@ -69,7 +69,7 @@ jobs:
       targetType: 'inline'
       script: |
         rm -rf status.txt
-    - task: PublishTestResults@2
+  - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
       testResultsFiles: '$(Agent.BuildDirectory)/s/build/reports/*'
