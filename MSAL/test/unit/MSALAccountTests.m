@@ -142,6 +142,7 @@
 
 - (void)testAddTenantProfiles_whenAddValidTenantProfiles_shouldAddIt
 {
+    XCTAssertTrue(NO);
     // Create MSAL account 1
     MSIDAccount *msidAccount = [MSIDAccount new];
     msidAccount.accountIdentifier = [[MSIDAccountIdentifier alloc] initWithDisplayableId:@"user@contoso.com" homeAccountId:@"uid.tid"];
