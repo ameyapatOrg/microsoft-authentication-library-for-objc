@@ -166,7 +166,7 @@ class BuildTarget:
 			command += " " + ios_sim_flags + " " + ios_sim_dest
 		
 		if (xcpretty) :
-			command += " | xcpretty"
+			command += " | xcpretty --report html"
 		
 		return command
 	
@@ -435,6 +435,8 @@ if code_coverage :
 script_end_time = timer()
 
 print "Total running time: " + "{0:.2f}".format(script_end_time - script_start_time) + " seconds"
+# xcodebuild seems to log in stderr instead of stdout. Catching final_status in text file to capture exit code and determine if build failed
+# Similar issue : (see https://developer.apple.com/forums/thread/663959)
 status_file = open("status.txt", "w")
 status_file.write(str(final_status))
 sys.exit(final_status)

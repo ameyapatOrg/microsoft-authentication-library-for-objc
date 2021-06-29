@@ -69,5 +69,8 @@ jobs:
       targetType: 'inline'
       script: |
         rm -rf status.txt
-  
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Pipeline.Workspace)'
+      publishLocation: 'pipeline'
   
